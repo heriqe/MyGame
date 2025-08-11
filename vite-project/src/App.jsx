@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  // Adiciona suporte à tecla espaço para incrementar o contador
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Space') {
+        setCount((c) => c + 1)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <>
@@ -18,7 +29,11 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button 
+          onClick={() => setCount((count) => count + 1)}
+          style={{ fontSize: '1.2rem', padding: '12px 24px', cursor: 'pointer' }}
+          title="Clique ou pressione espaço para aumentar"
+        >
           count is {count}
         </button>
         <p>
