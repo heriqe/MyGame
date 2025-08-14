@@ -1,0 +1,57 @@
+.game-container {
+  background: #222;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Player com spritesheet */
+.player {
+  width: 64px; /* Largura de um frame */
+  height: 64px; /* Altura de um frame */
+  margin-top: 40px;
+  background-image: url("/sprites/player_spritesheet.png");
+  background-repeat: no-repeat;
+}
+
+/* Animação de Idle (frames 0-3) */
+.player.idle {
+  animation: idleAnim 0.8s steps(4) infinite;
+  background-position: 0 0;
+}
+
+@keyframes idleAnim {
+  from { background-position-x: 0px; }
+  to { background-position-x: -256px; } /* 64px * 4 frames */
+}
+
+/* Animação de Ataque (frames 4-7) */
+.player.attack {
+  animation: attackAnim 0.5s steps(4) forwards;
+  background-position-y: 0px;
+}
+
+@keyframes attackAnim {
+  from { background-position-x: -256px; }  /* Início ataque */
+  to { background-position-x: -512px; }    /* Fim ataque */
+}
+
+/* Animação de Esquiva (frames 8-11) */
+.player.dodge {
+  animation: dodgeAnim 0.5s steps(4) forwards;
+  background-position-y: 0px;
+}
+
+@keyframes dodgeAnim {
+  from { background-position-x: -512px; }  /* Início esquiva */
+  to { background-position-x: -768px; }    /* Fim esquiva */
+}
+
+/* Inventário */
+.inventory {
+  background: #333;
+  border: 1px solid #555;
+  padding: 10px;
+  margin-top: 20px;
+}
